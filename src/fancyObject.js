@@ -1,5 +1,5 @@
 const _ = require('lodash')
-const { MULTI_KEY } = require('./constants')
+const { MULTI_KEY, OTHERWISE } = require('./constants')
 
 function fancyObject(POJO, options) {
   const chosenOptions = {}
@@ -12,7 +12,10 @@ function fancyObject(POJO, options) {
         const multiKeys = key.split(MULTI_KEY)
         if (multiKeys.includes(givenKey)) field = POJO[key]
       }
-      if (!field) Reflect.get(...arguments)
+      if (!field) {
+        if (OTHERWISE in POJO) return POJO[OTHERWISE]
+        else Reflect.get(...arguments)
+      }
       return field
     },
   })

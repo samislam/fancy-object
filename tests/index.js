@@ -1,5 +1,5 @@
 const log = require('@samislam/log')
-const { fancyObject, multiKey } = require('../src/index')
+const { fancyObject, multiKey, otherwise } = require('../src/index')
 
 console.clear()
 const line = '_'.repeat(process.stdout.columns)
@@ -43,5 +43,19 @@ log(line, test4)
 log.w(test4['admin'])
 log.w(test4['administrator'])
 log.w(test4['not found!'])
+
+/*--------------------*/
+
+const test5 = fancyObject({
+  [multiKey(['admin', 'administrator'])]: 'inside admin/administrator',
+  admin: 'string 2',
+  administrator: 'string 3',
+  [otherwise()]: 'otherwise this one',
+})
+
+log(line, test5)
+log.w(test5['admin'])
+log.w(test5['administrator'])
+log.w(test5['not found!'])
 
 /*--------------------*/

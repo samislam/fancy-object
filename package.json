@@ -1,6 +1,6 @@
 {
   "name": "fancy-object",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "a featured javascript object to use as a javascript literal",
   "main": "./src/index.js",
   "scripts": {
