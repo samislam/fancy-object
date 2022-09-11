@@ -1,0 +1,39 @@
+{
+  "name": "fancy-object",
+  "version": "1.0.0",
+  "description": "a featured javascript object to use as a javascript literal",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "nodemon -q ./tests/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samislam/fancy-object.git"
+  },
+  "keywords": [
+    "fancy-object",
+    "fancy-js-object",
+    "array-object",
+    "map-object",
+    "object-mapping"
+  ],
+  "author": "Islam Yamor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samislam/fancy-object/issues"
+  },
+  "homepage": "https://github.com/samislam/fancy-object#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  },
+  "dependencies": {
+    "@samislam/log": "^1.1.4",
+    "lodash": "^4.17.21"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "printWidth": 120,
+    "semi": false,
+    "singleQuote": true
+  }
+}
