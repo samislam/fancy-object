@@ -1,5 +1,5 @@
 const log = require('@samislam/log')
-const { fancyObject, multiKey, otherwise } = require('../src/index')
+const { fancyObject, multiKey, otherwise, access } = require('../src/index')
 
 console.clear()
 const line = '_'.repeat(process.stdout.columns)
@@ -11,7 +11,7 @@ const test1 = fancyObject({
   key3: 'string 3',
 })
 
-log(test1)
+log('TEST1', test1)
 /*--------------------*/
 const test2 = fancyObject({
   key1: 'string 1',
@@ -19,7 +19,7 @@ const test2 = fancyObject({
   key1: 'string 3',
 })
 
-log(line, test2)
+log('TEST2', line, test2)
 /*--------------------*/
 const test3 = fancyObject({
   [multiKey(['admin', 'administrator'])]: 'inside admin/administrator',
@@ -27,7 +27,7 @@ const test3 = fancyObject({
   key3: 'string 3',
 })
 
-log(line, test3)
+log('TEST3', line, test3)
 log.w(test3['admin'])
 log.w(test3['administrator'])
 log.w(test3['key2'])
@@ -39,7 +39,7 @@ const test4 = fancyObject({
   administrator: 'string 3',
 })
 
-log(line, test4)
+log('TEST4', line, test4)
 log.w(test4['admin'])
 log.w(test4['administrator'])
 log.w(test4['not found!'])
@@ -53,9 +53,23 @@ const test5 = fancyObject({
   [otherwise()]: 'otherwise this one',
 })
 
-log(line, test5)
+log('TEST5', line, test5)
 log.w(test5['admin'])
 log.w(test5['administrator'])
 log.w(test5['not found!'])
+
+/*--------------------*/
+
+const test6 = fancyObject({
+  [multiKey(['admin', 'administrator'])]: 'inside admin/administrator',
+  admin: 'string 2',
+  administrator: 'string 3',
+  [otherwise()]: 'otherwise this one',
+})
+
+log('TEST6', line, test6)
+log.w(access('admin', test6))
+log.w(access('administrator', test6))
+log.w(access('not found!', test6))
 
 /*--------------------*/
