@@ -1,10 +1,14 @@
 const _ = require('lodash')
-const { MULTI_KEY, OTHERWISE } = require('./constants')
+const { MULTI_KEY, OTHERWISE, ADDIF } = require('./constants')
 
-function fancyObject(POJO, options) {
+function fancyObject(POJO_, options) {
   const chosenOptions = {}
   const defaultOptions = {}
   _.merge(chosenOptions, defaultOptions, options)
+  const POJO = {}
+  for (const [key, value] of Object.entries(POJO_)) {
+    if (key !== ADDIF) POJO[key] = value
+  }
   const proxy = new Proxy(POJO, {
     get(_obj, givenKey) {
       let field

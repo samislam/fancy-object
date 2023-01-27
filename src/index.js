@@ -3,6 +3,7 @@ const otherwise = require('./otherwise')
 const constants = require('./constants')
 const multiKey = require('./multiKey')
 const access = require('./access')
+const addIf = require('./addIf')
 
 module.exports = {
   fancyObject,
@@ -10,4 +11,5 @@ module.exports = {
   constants,
   multiKey,
   access,
+  addIf,
 }
