@@ -1,4 +1,6 @@
 # directories
 node_modules/
+dist/
+@types/
 # files
 package-lock.json
