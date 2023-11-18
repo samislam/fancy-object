@@ -1,8 +1,8 @@
 const log = require('@samislam/log')
-const { fancyObject, multiKey, otherwise, access, addIf } = require('../src/index')
+import { fancyObject, multiKey, otherwise, access, addIf } from '../src/index'
 
 console.clear()
-const line = '_'.repeat(process.stdout.columns)
+const line = '_'.repeat(process.stdout.columns - 20) + '\n'
 
 /*--------------------*/
 const test1 = fancyObject({
@@ -12,14 +12,6 @@ const test1 = fancyObject({
 })
 
 log('TEST1', test1)
-/*--------------------*/
-const test2 = fancyObject({
-  key1: 'string 1',
-  key1: 'string 2',
-  key1: 'string 3',
-})
-
-log('TEST2', line, test2)
 /*--------------------*/
 const test3 = fancyObject({
   [multiKey(['admin', 'administrator'])]: 'inside admin/administrator',
@@ -43,6 +35,16 @@ log('TEST4', line, test4)
 log.w(test4['admin'])
 log.w(test4['administrator'])
 log.w(test4['not found!'])
+/*--------------------*/
+const test42 = fancyObject({
+  [multiKey(['admin', 'administrator'])]: 'inside admin/administrator',
+  admin: 'string 2',
+})
+
+log('TEST42', line, test42)
+log.w(test42['admin'])
+log.w(test42['administrator'])
+log.w(test42['not found!'])
 
 /*--------------------*/
 
@@ -77,10 +79,26 @@ log.w(access('not found!', test6))
 const test7 = fancyObject({
   [multiKey(['admin', 'administrator'])]: 'inside admin/administrator',
   [addIf(true, 'myKey')]: "you'll see me",
-  [addIf(false, 'myKey2')]: "you can't see me",
+  [addIf(false, 'myKey2')]: "you'll can't see me 1",
+  [addIf(false, 'myKey3')]: "you can't see me 2",
   [otherwise()]: 'otherwise this one',
 })
 
 log('TEST7', line, test7)
+
+/*--------------------*/
+
+/*--------------------*/
+
+const test8 = fancyObject({
+  [multiKey(['admin', 'administrator'])]: 'inside admin/administrator',
+  [addIf(true, 1)]: 1,
+  [addIf(false, 2)]: "you'll can't see me 1",
+  // [addIf(false, 3)]: () => 3,
+  [otherwise()]: 'otherwise this one',
+  a: '12',
+})
+
+log('TEST8', line, test8)
 
 /*--------------------*/
