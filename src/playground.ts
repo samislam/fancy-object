@@ -28,3 +28,8 @@ const obj2 = fancyObject({
 })
 
 obj2.key2
+
+const c = fancyObject({
+  key1: '23',
+  ...addIf(true, 'key2', () => 'some string'),
+})
