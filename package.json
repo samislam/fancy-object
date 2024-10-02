@@ -23,7 +23,7 @@
     "object-mapping"
   ],
   "author": "Islam Yamor",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/samislam/fancy-object/issues"
   },
