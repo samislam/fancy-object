@@ -1,17 +1,16 @@
-const REMOVE_CONST = 'removeMe'
-const addIf = <T extends string>(condition: boolean, key: T): T | typeof REMOVE_CONST => {
-  if (condition) return key
-  else return REMOVE_CONST
-}
+// src/playground.ts
+import addIf from './addIf'
+import multiKey from './multiKey'
+import otherwise from './otherwise'
+import { fancyObject } from './fancyObject'
 
-function fancyObject<T extends Record<string, unknown>, K extends keyof T>(POJO: T) {
-  const { [REMOVE_CONST]: _REMOVE_CONST_VAL, ...POJO_ } = POJO
-  return POJO_ as Omit<T, typeof REMOVE_CONST>
-}
-
-const myObj = fancyObject({
-  a: 'apple',
-  b: 'banana',
-  c: 'cajo',
-  [addIf(true, 'd')]: () => 'mew',
+const obj = fancyObject({
+  key1: 'value1',
+  key2: 'value2',
+  ...addIf(false, 'key3', 'value3'), // This key will be excluded
+  ...addIf(true, 'key4', 'value4'), // This key will be included
+  ...multiKey(['admin', 'user'], 'value5'),
+  [otherwise()]: 'the key you requested is not found!',
 })
+
+console.log(obj)

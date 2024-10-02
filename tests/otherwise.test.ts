@@ -6,7 +6,7 @@ describe('otherwise() modifier', () => {
     key2: 'value2',
     [otherwise()]: 'the key you requested is not found!',
   })
-  test('should fallback to the otherwise member when the access key does not exist', () => {
+  test('should fallback to otherwise when key does not exist', () => {
     expect(obj['not found']).toBe('the key you requested is not found!')
   })
 

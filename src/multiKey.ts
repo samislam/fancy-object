@@ -1,10 +1,11 @@
-import { MULTI_KEY } from './constants'
-
 import type { ObjectKey } from './types'
 
-export function multiKey(keys: ObjectKey[]) {
-  const fancyMultiKey = keys.join(MULTI_KEY)
-  return fancyMultiKey
+export function multiKey<K extends ObjectKey[], V>(keys: [...K], value: V): Record<K[number], V> {
+  const result: Record<ObjectKey, V> = {}
+  for (const key of keys) {
+    result[key] = value
+  }
+  return result
 }
 
 export default multiKey

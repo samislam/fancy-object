@@ -3,7 +3,7 @@ import { fancyObject, multiKey } from '../src'
 describe('multiKey() modifier', () => {
   describe('Simple usage tests', () => {
     const obj = fancyObject({
-      [multiKey(['admin', 'administrator'])]: 'inside admin/administrator',
+      ...multiKey(['admin', 'administrator'], 'inside admin/administrator'),
       key2: 'string 2',
       key3: 'string 3',
     })
@@ -17,13 +17,13 @@ describe('multiKey() modifier', () => {
     })
 
     test("accessing a key who's not defined should return `undefined`", () => {
-      expect(obj['not found']).toBe(undefined)
+      expect((obj as any)['not found']).toBe(undefined)
     })
   })
 
   describe('duplicate keys tests', () => {
     const obj = fancyObject({
-      [multiKey(['admin', 'administrator'])]: 'inside admin/administrator',
+      ...multiKey(['admin', 'administrator'], 'inside admin/administrator'),
       admin: 'string 2',
       administrator: 'string 3',
     })
@@ -34,7 +34,7 @@ describe('multiKey() modifier', () => {
     })
 
     test('Accessing an undefined member should return undefined ', () => {
-      expect(obj['not found']).toBe(undefined)
+      expect((obj as any)['not found']).toBe(undefined)
     })
   })
 })

@@ -3,9 +3,9 @@ import { access, addIf, fancyObject, multiKey, otherwise } from '../src'
 describe('access() function', () => {
   const obj = fancyObject({
     key1: 'string 1',
-    [addIf(true, 'key2')]: 'value of addIf true',
-    [addIf(false, 'key3')]: 'should not be accessible',
-    [multiKey(['admin', 'user'])]: 'value of multi key',
+    ...addIf(true, 'key2', 'value of addIf true'),
+    ...addIf(false, 'key3', 'should not be accessible'),
+    ...multiKey(['admin', 'user'], 'value of multi key'),
     [otherwise()]: 'value of otherwise',
   })
 
@@ -18,7 +18,7 @@ describe('access() function', () => {
   })
 
   test('should return the otherwise() caluse when accessing an addIf false property', () => {
-    expect(access(obj, 'key3')).toBe('value of otherwise')
+    expect(access(obj as any, 'key3')).toBe('value of otherwise')
   })
 
   test('should access multiKey property members', () => {
@@ -27,6 +27,6 @@ describe('access() function', () => {
   })
 
   test('should fallback to the `otherwise()` clause when trying to access a non-existent key', () => {
-    expect(access(obj, 'not found')).toBe('value of otherwise')
+    expect(access(obj as any, 'not found')).toBe('value of otherwise')
   })
 })
