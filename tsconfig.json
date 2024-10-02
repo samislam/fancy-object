@@ -10,7 +10,11 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
     "skipLibCheck": true
   },
-  "exclude": ["./dist", "./tests"]
+  "include": ["./src/**/*.ts", "../tests/**/*.ts"],
+  "exclude": ["./dist", "node_modules"]
 }
