@@ -1,6 +1,4 @@
-import type { ObjectKey } from './types'
-
-export const access = (key: ObjectKey, fancyObject: any) => {
+export const access = <O extends object>(fancyObject: O, key: keyof O) => {
   return fancyObject[key]
 }
 
