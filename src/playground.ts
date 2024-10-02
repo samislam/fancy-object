@@ -1,4 +1,3 @@
-// src/playground.ts
 import addIf from './addIf'
 import multiKey from './multiKey'
 import otherwise from './otherwise'
@@ -25,7 +24,7 @@ console.log(obj1.unknownKey) // Output: 'Default value when key is not found'
 
 const obj2 = fancyObject({
   key1: 123,
-  ...addIf(true, 'key2', () => () => 123),
+  ...addIf(true, 'key2', () => 123),
 })
 
 obj2.key2
