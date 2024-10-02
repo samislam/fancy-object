@@ -16,9 +16,16 @@ const obj = fancyObject({
 console.log(obj)
 
 const obj1 = fancyObject({
-  key1: 'value1',
+  key1: 123,
   [otherwise()]: 'Default value when key is not found',
 })
 
 console.log(obj1.key1) // Output: 'value1'
 console.log(obj1.unknownKey) // Output: 'Default value when key is not found'
+
+const obj2 = fancyObject({
+  key1: 123,
+  ...addIf(true, 'key2', () => () => 123),
+})
+
+obj2.key2
