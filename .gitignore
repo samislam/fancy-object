@@ -1,7 +1,3 @@
 # directories
 node_modules/
 dist/
-@types/
-.vscode/
-# files
-package-lock.json
